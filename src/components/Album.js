@@ -12,70 +12,105 @@ class Album extends Component {
     this.state = {
       album: album,
       currentSong: album.songs[0],
-      isPlaying: false
+      isPlaying: false,
+      hoveredSong: ''
     };
 
-    this.audioElement = document.createElement('audio');
+    this.audioElement = document.createElement("audio");
     this.audioElement.src = album.songs[0].audioSrc;
+
+    this.iconClass = '';
   }
 
-  play(){
+  play() {
     this.audioElement.play();
     this.setState({ isPlaying: true });
   }
 
-  pause(){
+  pause() {
     this.audioElement.pause();
     this.setState({ isPlaying: false });
   }
 
-  setSong(song){
+  setSong(song) {
     this.audioElement.src = song.audioSrc;
     this.setState({
-        currentSong: song
+      currentSong: song
     });
   }
 
-  handleSongClick(song){
-      const isSameSong = this.state.currentSong === song;
-      if (this.state.isPlaying && isSameSong){
-        this.pause();
-      } else {
-          if (!isSameSong) { this.setSong(song); }
-          this.play();
+  handleSongClick(song) {
+    const isSameSong = this.state.currentSong === song;
+    if (this.state.isPlaying && isSameSong) {
+      this.pause();
+    } else {
+      if (!isSameSong) {
+        this.setSong(song);
       }
+      this.play();
+    }
+  }
+
+  handleSongMouseEnter(song) {
+    const isSameSong = this.state.currentSong === song;
+    if (this.state.isPlaying && isSameSong) {
+      this.iconClass = "icon ion-md-pause";
+    } else {
+      this.iconClass = "icon ion-md-play";
+    }
+    this.setState({ hoveredSong: song });
+  }
+
+  handleSongMouseLeave() {
+    this.iconClass = "";
+    this.setState({ hoveredSong: '' });
   }
 
   render() {
     return (
       <section className="album">
         <section id="album-info">
-          <img id="album-cover-art"  src={this.state.album.albumCover} alt={this.state.album.title} />
+          <img
+            id="album-cover-art"
+            src={this.state.album.albumCover}
+            alt={this.state.album.title}
+          />
           <div className="album-details">
             <h1 id="album-title">{this.state.album.title}</h1>
             <h2 className="artist">{this.state.album.artist}</h2>
             <div id="release-info">{this.state.album.releaseInfo}</div>
           </div>
         </section>
-            <table id="song-list">
-                <colgroup>
-                    <col id="song-number-column" />
-                    <col id="song-title-column" />
-                    <col id="song-duration-column" />
-                </colgroup>
-                <tbody>
-                    {
-                        this.state.album.songs.map((song, index) => {
-                            return (
-                                <tr className="song" key={index} onClick={() => this.handleSongClick(song)}>
-                                    <td>{song.title}</td>
-                                    <td>{song.duration}</td>
-                                </tr>
-                                );
-                        })
-                    }
-                </tbody>
-            </table>
+        <table id="song-list">
+          <colgroup>
+            <col id="song-number-column" />
+            <col id="song-title-column" />
+            <col id="song-duration-column" />
+          </colgroup>
+          <tbody>
+            {this.state.album.songs.map((song, index) => {
+              return (
+                <tr
+                  className="song"
+                  key={index}
+                  onClick={() => this.handleSongClick(song)}
+                  onMouseEnter={() => this.handleSongMouseEnter(song)}
+                  onMouseLeave={() => this.handleSongMouseLeave(song)}
+                >
+                  <td>
+                    {this.state.hoveredSong === song ? (
+                      <span className={this.iconClass} />
+                    ) : (
+                      index + 1
+                    )}
+                  </td>
+                  <td>{song.title}</td>
+                  <td>{song.duration}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </section>
     );
   }
