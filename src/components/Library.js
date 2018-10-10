@@ -11,7 +11,6 @@ class Library extends Component {
     render(){
         return(
             <section className="library">
-                Library page will go here
                 {
                     this.state.albums.map( (album, index) =>
                         <div key={index}>
