@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import albumData from './../data/albums';
-import PlayerBar from './PlayerBar';
+import React, { Component } from "react";
+import albumData from "./../data/albums";
+import PlayerBar from "./PlayerBar";
 
 class Album extends Component {
   constructor(props) {
@@ -14,13 +14,13 @@ class Album extends Component {
       album: album,
       currentSong: album.songs[0],
       isPlaying: false,
-      hoveredSong: ''
+      hoveredSong: ""
     };
 
     this.audioElement = document.createElement("audio");
     this.audioElement.src = album.songs[0].audioSrc;
 
-    this.iconClass = '';
+    this.iconClass = "";
   }
 
   play() {
@@ -53,11 +53,28 @@ class Album extends Component {
   }
 
   handlePrevClick() {
-    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-    const newIndex = Math.max(0, currentIndex - 1);
-    const newSong = this.state.album.songs[newIndex];
-    this.setSong(newSong);
-    this.play();
+    const currentIndex = this.state.album.songs.findIndex(
+      song => this.state.currentSong === song
+    );
+
+    if (currentIndex !== 0) {
+      const newIndex = Math.max(0, currentIndex - 1);
+      const newSong = this.state.album.songs[newIndex];
+      this.setSong(newSong);
+      this.play();
+    }
+  }
+
+  handleNextClick() {
+    const currentIndex = this.state.album.songs.findIndex(
+      song => this.state.currentSong === song
+    );
+    if (currentIndex !== this.state.album.songs.length - 1){
+      const newIndex = Math.min(this.state.album.songs.length - 1, currentIndex + 1);
+      const newSong = this.state.album.songs[newIndex];
+      this.setSong(newSong);
+      this.play();
+    }
   }
 
   handleSongMouseEnter(song) {
@@ -72,7 +89,7 @@ class Album extends Component {
 
   handleSongMouseLeave() {
     this.iconClass = "";
-    this.setState({ hoveredSong: '' });
+    this.setState({ hoveredSong: "" });
   }
 
   render() {
@@ -120,10 +137,12 @@ class Album extends Component {
             })}
           </tbody>
         </table>
-        <PlayerBar isPlaying={this.state.isPlaying}
-        currentSong={this.state.currentSong}
-        handleSongClick={ () => this.handleSongClick(this.state.currentSong) }
-        handlePrevClick={ () => this.handlePrevClick() }
+        <PlayerBar
+          isPlaying={this.state.isPlaying}
+          currentSong={this.state.currentSong}
+          handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+          handlePrevClick={() => this.handlePrevClick()}
+          handleNextClick={() => this.handleNextClick()}
         />
       </section>
     );
