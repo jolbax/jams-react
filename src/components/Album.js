@@ -110,6 +110,11 @@ class Album extends Component {
     });
   }
 
+  handleVolumeChange(e){
+    const newVolume = e.target.value;
+    this.audioElement.volume = newVolume;
+  }
+
   handleSongMouseEnter(song) {
     const isSameSong = this.state.currentSong === song;
     if (this.state.isPlaying && isSameSong) {
@@ -123,6 +128,23 @@ class Album extends Component {
   handleSongMouseLeave() {
     this.iconClass = "";
     this.setState({ hoveredSong: "" });
+  }
+
+  formatTime(value) {
+    if (typeof value !== 'number') value = Number(value);
+
+    let roundedValue = Math.round(value);
+    let minutes = Math.floor(roundedValue / 60);
+    let seconds = roundedValue % 60;
+
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+
+    return Number.isNaN(value) ? '--:--' : `${minutes}:${seconds}`;
   }
 
   render() {
@@ -164,7 +186,7 @@ class Album extends Component {
                     )}
                   </td>
                   <td>{song.title}</td>
-                  <td>{song.duration}</td>
+                  <td>{this.formatTime(song.duration)}</td>
                 </tr>
               );
             })}
@@ -175,10 +197,14 @@ class Album extends Component {
           currentSong={this.state.currentSong}
           currentTime={this.audioElement.currentTime}
           duration={this.audioElement.duration}
+          volume={this.audioElement.volume}
+          displayCurrentTime={this.formatTime(this.audioElement.currentTime)}
+          displayDuration={this.formatTime(this.audioElement.duration)}
           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
         />
       </section>
     );
