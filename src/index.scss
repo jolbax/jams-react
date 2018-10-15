@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+$primary-color: gray;
+$secondary-color: lightgray;
+$background-color: #eee;
+
+html {
+  background: white;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.App {
+  background: $background-color;
+  margin: auto;
+  max-width: 1000px;
+  min-height: 100vh;
+}
+
+nav {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+
+  a {
+    background: $secondary-color;
+    border: solid 2px $primary-color;
+    color: black;
+    padding: 4px;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  a:hover {
+    background: $primary-color;
+    color: white;
+  }
+}
+
+header {
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 100px;
+  }
+}
+
+.hero-title {
+  color: $primary-color;
+  font-size: larger;
+
+}
+
+.selling-points {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.point {
+  background: white;
+  border: solid 2px $primary-color;
+  margin: 10px;
+  max-height: 300px;
+  padding: 10px;
+  width: 20vw;
+}
+
+.point-title {
+  color: black;
+}
+
+.point-description {
+  color: $primary-color;
+}
+
+.library {
+  flex-flow: column;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-decoration: none;
+
+    img {
+      margin: 20px;
+      max-height: 200px;
+    }
+
+    img:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+
+.album-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: start;
+
+  div {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 150;
+    padding: 5px;
+  }
+
+  div:hover {
+    background: gray;
+    color: white;
+    font-weight: 400;
+  }
+}
+
+.album {
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+  justify-content: center;
+
+  img {
+    margin: 0 20px;
+    max-width: 350px;
+
+  }
+
+  table {
+    border-collapse: collapse;
+    text-align: start;
+
+    tr:hover {
+      font-weight: bolder;
+
+      td:first-child {
+        background: $primary-color;
+        color: white;
+      }
+    }
+
+    td {
+      font-size: 1.0rem;
+      font-weight: 150;
+      padding: 4px;
+      width: 80px;
+    }
+  }
+}
+
+.song {
+  td:first-child {
+    border-radius: 50%;
+    text-align: center;
+    width: 18px;
+  }
+}
+
+
+.album-details {
+  h1 {
+    font-weight: 600;
+  }
+
+  h2 {
+    font-weight: 200;
+  }
+
+  font-weight: 150;
+
+}
+
+.player-bar {
+
+  align-items: center;
+  background: $primary-color;
+  border-radius: 50px;
+  bottom: 0;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  padding: 0 10px;
+  position: fixed;
+
+  button {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+
+    &:active {
+      background: $secondary-color;
+
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.current-time, .total-time {
+  font-size: .7rem;
+}

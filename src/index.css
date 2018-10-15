@@ -1,14 +1,241 @@
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+html {
+  background: white;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.App {
+  background: #eee;
+  margin: auto;
+  max-width: 1000px;
+  min-height: 100vh;
+}
+
+nav {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+nav a {
+  background: lightgray;
+  border: solid 2px gray;
+  color: black;
+  padding: 4px;
+  text-decoration: none;
+  width: 100%;
+}
+
+nav a:hover {
+  background: gray;
+  color: white;
+}
+
+header h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 100px;
+}
+
+.hero-title {
+  color: gray;
+  font-size: larger;
+}
+
+.selling-points {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px;
+}
+
+.point {
+  background: white;
+  border: solid 2px gray;
+  margin: 10px;
+  max-height: 300px;
+  padding: 10px;
+  width: 20vw;
+}
+
+.point-title {
+  color: black;
+}
+
+.point-description {
+  color: gray;
+}
+
+.library {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+.library a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  text-decoration: none;
+}
+
+.library a img {
+  margin: 20px;
+  max-height: 200px;
+}
+
+.library a img:hover {
+  opacity: 0.9;
+}
+
+.album-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: start;
+}
+
+.album-info div {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 150;
+  padding: 5px;
+}
+
+.album-info div:hover {
+  background: gray;
+  color: white;
+  font-weight: 400;
+}
+
+.album {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 80vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.album img {
+  margin: 0 20px;
+  max-width: 350px;
+}
+
+.album table {
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.album table tr:hover {
+  font-weight: bolder;
+}
+
+.album table tr:hover td:first-child {
+  background: gray;
+  color: white;
+}
+
+.album table td {
+  font-size: 1.0rem;
+  font-weight: 150;
+  padding: 4px;
+  width: 80px;
+}
+
+.song td:first-child {
+  border-radius: 50%;
+  text-align: center;
+  width: 18px;
+}
+
+.album-details {
+  font-weight: 150;
+}
+
+.album-details h1 {
+  font-weight: 600;
+}
+
+.album-details h2 {
+  font-weight: 200;
+}
+
+.player-bar {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: gray;
+  border-radius: 50px;
+  bottom: 0;
+  -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 10px;
+  padding: 0 10px;
+  position: fixed;
+}
+
+.player-bar button {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.player-bar button:active {
+  background: lightgray;
+}
+
+.player-bar button:focus {
+  outline: 0;
+}
+
+.current-time, .total-time {
+  font-size: .7rem;
+}
+/*# sourceMappingURL=index.css.map */
